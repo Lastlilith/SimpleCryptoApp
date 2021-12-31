@@ -1,9 +1,7 @@
 package com.example.simplecryptoapp
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplecryptoapp.adapters.CoinInfoAdapter
@@ -22,18 +20,20 @@ class CoinPriceListActivity : AppCompatActivity() {
         rvCoinPriceList = findViewById(R.id.rvCoinPriceList)
 
         val adapter = CoinInfoAdapter(this)
-        adapter.onCoinClickedListener = object: CoinInfoAdapter.OnCoinClickedListener {
+        adapter.onCoinClickedListener = object : CoinInfoAdapter.OnCoinClickedListener {
             override fun onCoinCLick(coinPriceInfo: CoinPriceInfo) {
-                Log.d("On_Click", coinPriceInfo.fromSymbol)
+                val intent = CoinDetailsActivity.newIntent(
+                    this@CoinPriceListActivity,
+                    coinPriceInfo.fromSymbol
+                )
+                startActivity(intent)
             }
-
         }
 
         rvCoinPriceList.adapter = adapter
         viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
-        viewModel.priceList.observe(this, Observer {
+        viewModel.priceList.observe(this, {
             adapter.coinInfoList = it
         })
-
     }
 }

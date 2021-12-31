@@ -4,12 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplecryptoapp.R
 import com.example.simplecryptoapp.pojo.CoinPriceInfo
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_coin_info.view.*
 
 class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
 
@@ -21,10 +20,10 @@ class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinI
     var onCoinClickedListener: OnCoinClickedListener? = null
 
     inner class CoinInfoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val ivLogoCoin = itemView.findViewById<ImageView>(R.id.ivLogoCoin)
-        val tvSymbols = itemView.findViewById<TextView>(R.id.tvSymbols)
-        val tvPrice = itemView.findViewById<TextView>(R.id.tvPrice)
-        val tvLastUpdate = itemView.findViewById<TextView>(R.id.tvLastUpdate)
+        val ivLogoCoin = itemView.ivLogoCoin
+        val tvSymbols = itemView.tvSymbols
+        val tvPrice = itemView.tvPrice
+        val tvLastUpdate = itemView.tvLastUpdate
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinInfoViewHolder {

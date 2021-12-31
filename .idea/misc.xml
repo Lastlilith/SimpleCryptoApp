@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/SimpleCryptoApp/app/src/main/res/layout/activity_coin_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/SimpleCryptoApp/app/src/main/res/layout/activity_coin_price_list.xml" value="0.264" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/SimpleCryptoApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/SimpleCryptoApp/app/src/main/res/layout/item_coin_info.xml" value="0.4" />
