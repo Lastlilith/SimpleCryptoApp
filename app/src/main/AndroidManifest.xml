@@ -13,10 +13,12 @@
         android:theme="@style/Theme.SimpleCryptoApp">
         <activity
             android:name=".CoinDetailsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="nosensor"/>
         <activity
             android:name=".CoinPriceListActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
