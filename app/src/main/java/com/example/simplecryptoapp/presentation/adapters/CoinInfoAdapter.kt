@@ -1,4 +1,4 @@
-package com.example.simplecryptoapp.adapters
+package com.example.simplecryptoapp.presentation.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplecryptoapp.R
-import com.example.simplecryptoapp.pojo.CoinPriceInfo
+import com.example.simplecryptoapp.data.network.ApiFactory.BASE_IMAGE_URL
+import com.example.simplecryptoapp.domain.CoinInfo
+import com.example.simplecryptoapp.utils.convertTimestampToTime
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_coin_info.view.*
 
-class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
+class CoinInfoAdapter(private val context: Context) :
+    RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
 
-    var coinInfoList: List<CoinPriceInfo> = listOf()
+    var coinInfoList: List<CoinInfo> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -40,8 +43,9 @@ class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinI
                 val lastUpdateTemplate = context.resources.getString(R.string.last_update_template)
                 tvSymbols.text = String.format(symbolsTemplate, fromSymbol, toSymbol)
                 tvPrice.text = price
-                tvLastUpdate.text = String.format(lastUpdateTemplate, getFormattedTime())
-                Picasso.get().load(getFullImageUrl()).into(ivLogoCoin)
+                tvLastUpdate.text =
+                    String.format(lastUpdateTemplate, convertTimestampToTime(lastUpdate))
+                Picasso.get().load(BASE_IMAGE_URL + imageUrl).into(ivLogoCoin)
                 itemView.setOnClickListener {
                     onCoinClickedListener?.onCoinCLick(this)
                 }
@@ -53,6 +57,6 @@ class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinI
     override fun getItemCount(): Int = coinInfoList.size
 
     interface OnCoinClickedListener {
-        fun onCoinCLick(coinPriceInfo: CoinPriceInfo)
+        fun onCoinCLick(coinPriceInfo: CoinInfo)
     }
 }
